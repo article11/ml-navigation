@@ -1,0 +1,26 @@
+
+#top{width:100%;height:150px;text-align:center;margin-top:30px;padding:0px;}
+#top img{width:10%;height:100px;}
+#top span{font-size:16px;font-weight:bolder;}
+
+.main{width:200px;padding-top:40px;padding-left:15px;float:left}
+.main .gameico{width:125px; height:110px;text-align:center;margin-bottom:40px;border-radius: 10px;}
+.main .gameico img{border-radius: 10px;width:120px;height:90px;}
+.main .gameico:hover{cursor:pointer;}
+/*----
+.menu{width:100px;height:82;background:#5FC19E;position:absolute;left:140px;top:200px;}
+.menu ul{padding: 0px;height: 90px;margin-top: 0px;}
+.menu ul li{line-height:40px;border-bottom:2px dashed white;text-align:center;cursor:pointer;}
+.menu ul li:hover,li:hover a{background:gray;color:white;font-weight:bolder;}
+
+.chil_menu{width:150px;height:auto;background:#5FC19E;position:absolute;left:100px;top:0px;}
+.chil_menu ul{height:auto;}
+.chil_menu ul li a{font-size:14px;font-weight:normal;color:black;background:none;}
+.chil_menu ul li:hover a,a:hover{color:red}
+---*/
+
+#menu{width:90%;height:auto;margin:0 auto;}
+#menu .menu_ul1{padding:0px;}
+#menu .menu_ul1 .chil_menu{width:auto;height:50px;margin:10px 30px}
+#menu .menu_ul1 .chil_menu li{height:25px;line-height:25px;float:left;margin-right:10px;text-align:left;}
+#menu .menu_ul1 .chil_menu li:hover,li a:hover{color:red;}
