@@ -1,7 +1,10 @@
 import com.alibaba.fastjson.JSON;
-import com.alibaba.fastjson.JSONObject;
+import com.alibaba.fastjson.JSONArray;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 /**
  * Created by Administrator on 2016/11/4.
@@ -10,111 +13,59 @@ import java.util.*;
 public class test {
 
     public static void main(String[] args) throws ClassNotFoundException {
-        String serverId="1";
-        String playerName="test";
-        String playerLevel="98";
-        Map<String,String> map=new HashMap<String, String>();
-        map.put("serverId",serverId);
-        map.put("playerName",playerName);
-        map.put("playerLevel",playerLevel);
 
-
-        LinkedHashMap<String,Map<String,String>> maplist=new LinkedHashMap<String, Map<String,String>>();
-
-
-        maplist.put(map.get("serverId"),map);
-
-
-        System.out.println(JSON.toJSONString(maplist));
-
-
-        Map<String,String> map2=new HashMap<String, String>();
-        map2.put("serverId","20");
-        map2.put("playerName",playerName);
-        map2.put("playerLevel",playerLevel);
-
-        maplist.put(map2.get("serverId"),map2);
-
-
-
-        maplist.remove(map.get("serverId"));
-        maplist.put(map.get("serverId"),map);
-
-
-
-        Map<String,String> map3=new HashMap<String, String>();
-
-
-        LinkedList<String> list=new LinkedList<String>();
-
-        list.addFirst(map.get("serverId"));
-        list.addFirst(map2.get("serverId"));
-
-
-//        for(int i = 0; i < list.size(); i++)
-//        {
-//            String tem=list.get(i);
-//            if(tem.equals(map.get("serverId"))){
-//                list.remove(i);
-//            }
+//        Map map2 = new HashMap();
+//        String[] product_id = {"10000", "10001", "10002"};
+//        map2.put("product_id", product_id);
+//        String json2 = JSON.toJSONString(map2);
+//        System.out.println(json2);
+//        JSONObject jsonObject = JSON.parseObject(json2);
+//        Set<String> productIdSet = new HashSet<String>();
+//        JSONArray jsonArray = jsonObject.getJSONArray("product_id");
+//        for (int i = 0; i < jsonArray.size(); i++) {
+//            productIdSet.add(jsonArray.getString(i));
 //        }
-
-
-
-        String jsonList=   JSON.toJSONString(list);
-
-//        System.out.println(jsonList);
-
-
-
-
-        Map<String,String> map4=new HashMap<String, String>();
-        String json=   JSON.toJSONString(maplist);
-
-
-        map4.put("lastServerList",jsonList);
-        map4.put("serverPlayerShortInfo",json);
-
-        String json4=   JSON.toJSONString(map4);
-
-
-//        System.out.println(json4);
-//        System.out.println(JSON.toJSON(map4));
-
-        JSONObject jsonObject = JSONObject.parseObject(json4);
-
-        System.out.println(jsonObject);
-
-        System.out.println(jsonObject.get("lastServerList"));
-
-
-
-        List s= JSON.parseArray((String) jsonObject.get("lastServerList"),String.class);
-
-
-
-        LinkedList<String> list2=new LinkedList<String>();
-
-        list2.addAll(s);
-
-        System.out.println(list2);
-
-
-
-
-
-
-
-
-//        List<String> list2=new ArrayList<String>();
+//
+//        System.out.println("productIdSet:" + productIdSet);
 //
 //
-//        list2= (List<String>) jsonObject.get("lastServerList");
+//        System.out.println(productIdSet.contains("101000"));
+
+
+        String[] client_id1 = {"284503496053-6gfr5dah29trfetl1l9aqfclgauimlko.apps.googleusercontent.com", "284503496053-npllpcknsme1dgrrrl0kuicsl7cd5c9u.apps.googleusercontent.com", "834588391899-plser8kvd5t8tlo7kstju0dultibui4i.apps.googleusercontent.com"};
+        Map map = new HashMap();
+        map.put("client_id", client_id1);
+        System.out.println("map: "+JSON.toJSONString(map));
+
+
+
+
+
+
 //
-//        System.out.println(list2);
+//        JSONArray array = JSONArray.fromObject("[{'name':'hehe','age':22}]");
+//        List<Person> list = JSONArray.toList(array, Person.class);// 过时方法
+//        System.out.println(list.get(0).getName());
+
+        // 转换方法2
+
+
+        List<String> list = new ArrayList<String>();
+        list.add("a");
+        list.add("b");
+        String listStr = JSON.toJSONString(list);
+        List<String> list1 = JSONArray.parseArray(listStr, String.class);
+        System.out.println("list1: "+list1);
+
+
+
+
+
+
+
+
 
     }
-
 
 
 }

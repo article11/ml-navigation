@@ -44,7 +44,25 @@
             var agent = $("#agent").val();
             var gameid = $("#gameid").val();
             var gamename = $("#gamename").val();
-            var url = "<%=path%>/loginmaker?gameid=" + gameid + "&serverid=" + sid + "&agent=" + agent + "&username=" + qid + "&gamename=" + gamename;
+            var url = "<%=path%>/loginmaker?gameid=" + gameid + "&serverid=" + sid + "&agent=" + agent + "&username=" + qid + "&gamename=" + gamename+"&test=formal";
+            $.get(url, function (data) {
+                $("#loginurl").html(data);
+                $("#loginhref").attr("href", data);
+                var localurl = "http://127.0.0.1:8080/" + data.substring(data.indexOf("login_"));
+//                var localurl = "http://127.0.0.1:8080/"+data.substring(data.indexOf("login_common"));
+                $("#localurl").html(localurl);
+                $("#localhref").attr("href", localurl);
+            });
+        }
+
+
+        function getloginurltest() {
+            var qid = encodeURIComponent($("#username").val());
+            var sid = $("#serverid").val();
+            var agent = $("#agent").val();
+            var gameid = $("#gameid").val();
+            var gamename = $("#gamename").val();
+            var url = "<%=path%>/loginmaker?gameid=" + gameid + "&serverid=" + sid + "&agent=" + agent + "&username=" + qid + "&gamename=" + gamename+"&test=test";
             $.get(url, function (data) {
                 $("#loginurl").html(data);
                 $("#loginhref").attr("href", data);
@@ -86,6 +104,7 @@
     <br><br>
     <%--<input type="submit" value="生成" class="btn btn-primary"  onclick="getloginurl();"/>--%>
     <button type="button" class="btn btn-primary" onclick="getloginurl();">生成</button>
+    <button type="button" class="btn btn-primary" onclick="getloginurltest();">测试服生成</button>
     <br><br>
     生成地址：(md5src:)<a name="loginhref" id="loginhref" href="#" target="_blank">可以直接点击此超链接跳转</a>
     <br>

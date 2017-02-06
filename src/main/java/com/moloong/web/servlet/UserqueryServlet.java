@@ -24,6 +24,7 @@ public class UserqueryServlet extends BaseServlet {
         String agent = request.getParameter("agent");
         String username = request.getParameter("username");
         String serverid = request.getParameter("serverid");
+        String test = request.getParameter("test");
 
         Map<String, String> params = new HashMap<String, String>();
         params.put(CommonConst.gameid, gameid);
@@ -31,7 +32,7 @@ public class UserqueryServlet extends BaseServlet {
         params.put(CommonConst.agent, agent);
         params.put(CommonConst.username, username);
         params.put(CommonConst.serverid, serverid);
-
+        params.put("test", test);
 
         String res = UserqueryService.getInstance().getRoleId(params);
         response.setContentType("application/json;charset=UTF-8");

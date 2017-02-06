@@ -43,7 +43,7 @@
             var gameid = $("#gameid").val();
             var gamename = $("#gamename").val();
             var roleid = $("#roleid").val();
-            var url = "<%=path%>/rechargemaker?gameid=" + gameid + "&serverid=" + sid + "&agent=" + agent + "&username=" + qid + "&gamename=" + gamename + "&roleid=" + roleid;
+            var url = "<%=path%>/rechargemaker?gameid=" + gameid + "&serverid=" + sid + "&agent=" + agent + "&username=" + qid + "&gamename=" + gamename + "&roleid=" + roleid+"&test=formal";
             $.get(url, function (data) {
                 $("#rechargurl").html(data);
                 $("#recharghref").attr("href",data);
@@ -54,13 +54,52 @@
             });
         }
 
+        function getrechargeurltest() {
+            var qid = encodeURIComponent($("#username").val());
+            var sid = $("#serverid").val();
+            var agent = $("#agent").val();
+            var gameid = $("#gameid").val();
+            var gamename = $("#gamename").val();
+            var roleid = $("#roleid").val();
+            var url = "<%=path%>/rechargemaker?gameid=" + gameid + "&serverid=" + sid + "&agent=" + agent + "&username=" + qid + "&gamename=" + gamename + "&roleid=" + roleid+"&test=test";
+            $.get(url, function (data) {
+                $("#rechargurl").html(data);
+                $("#recharghref").attr("href",data);
+                var localurl = "http://127.0.0.1:8080/" + data.substring(data.indexOf("recharge_"));
+//                var localurl = "http://127.0.0.1:8080/"+data.substring(data.indexOf("login_common"));
+                $("#localurl").html(localurl);
+                $("#localhref").attr("href", localurl);
+            });
+        }
+
+
         function getroleid() {
             var qid = encodeURIComponent($("#username").val());
             var sid = $("#serverid").val();
             var agent = $("#agent").val();
             var gameid = $("#gameid").val();
             var gamename = $("#gamename").val();
-            var url = "<%=path%>/userqueryServlet?gameid=" + gameid + "&serverid=" + sid + "&agent=" + agent + "&username=" + qid + "&gamename=" + gamename;
+            var url = "<%=path%>/userqueryServlet?gameid=" + gameid + "&serverid=" + sid + "&agent=" + agent + "&username=" + qid + "&gamename=" + gamename+"&test=formal";
+            $.get(url, function (data) {
+                $.each(data, function (i, item) {
+                    if (i == 0) {
+                        $("#userquery").html(item);
+                        $("#userqueryhref").attr("href",item);
+                    }
+                    else if (i == 1) {
+                        $("#roleid").html(item);
+                    }
+                });
+            });
+        }
+
+        function getroleidtest() {
+            var qid = encodeURIComponent($("#username").val());
+            var sid = $("#serverid").val();
+            var agent = $("#agent").val();
+            var gameid = $("#gameid").val();
+            var gamename = $("#gamename").val();
+            var url = "<%=path%>/userqueryServlet?gameid=" + gameid + "&serverid=" + sid + "&agent=" + agent + "&username=" + qid + "&gamename=" + gamename+"&test=test";
             $.get(url, function (data) {
                 $.each(data, function (i, item) {
                     if (i == 0) {
@@ -110,15 +149,20 @@
         <option value="111111" selected="selected">请检查角色</option>
     </select>
     <button type="button" class="btn btn-primary" onclick="getroleid();">检查角色</button>
+    <button type="button" class="btn btn-primary" onclick="getroleidtest();">测试服检查角色</button>
     <br><br>
     <%}%>
     <%--<input type="submit" value="生成" class="btn btn-primary" />--%>
     <button type="button" class="btn btn-primary" onclick="getrechargeurl(),getroleid();">生成</button>
+    <button type="button" class="btn btn-primary" onclick="getrechargeurltest(),getroleidtest();">测试服生成</button>
     <br><br>
     角色查询地址：<a name="userqueryhref" id="userqueryhref" href="#" target="_blank">可以直接点击此超链接跳转</a>
     <br>
     <textarea name="userquery" id="userquery" style="width: 800px; height: 100px;"></textarea>
     <br><br>
+
+
+
     充值地址：<a name="recharghref" id="recharghref" href="#" target="_blank">可以直接点击此超链接跳转</a>
     <br>
     <textarea name="rechargurl" id="rechargurl" style="width: 800px; height: 100px;"></textarea>

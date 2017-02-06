@@ -18,6 +18,7 @@ import java.util.Map;
 public class lhfs_49you implements ReflectionService {
     @Override
     public String getLoginUrl(Map<String, String> params) {
+        String test = params.get("test").equals("test")?"test":"formal";
         String gamename = params.get(CommonConst.gamename);
         String adult = "1";
         String gameid = params.get(CommonConst.gameid);
@@ -28,11 +29,17 @@ public class lhfs_49you implements ReflectionService {
         String loginkey = LoginmakerDao.getInstance().getLoginKey(gamename, gameid, agent);
         String sign = MD5Util.getMD5String(username + serverid + time + adult + loginkey);
         String loginurl = "http://interface.lhfs.xhhd6.com/interface/login_49you?pf=" + agent + "&username=" + username + "&serverId=" + serverid + "&time=" + time + "&sign=" + sign + "&showlogin=0&adult=" + adult;
-        return loginurl;
+        String logintesturl = "http://interface.test.xhhd6.com/interface/login_common?pf=" + agent + "&username=" + username + "&serverId=" + serverid + "&time=" + time + "&sign=" + sign + "&showlogin=0&adult=" + adult;
+        String url=loginurl;
+        if(test.equals("test")){
+            url=logintesturl;
+        }
+        return url;
     }
 
     @Override
     public String getRechargeUrl(Map<String, String> params) {
+        String test = params.get("test").equals("test")?"test":"formal";
         String gamename = params.get(CommonConst.gamename);
         String gameid = params.get(CommonConst.gameid);
         String pf = params.get(CommonConst.agent);
@@ -43,19 +50,30 @@ public class lhfs_49you implements ReflectionService {
         String orderId = time + "_" + Until.getRoundNum(9);
         String money = "1";
         String gold = "100";
-        String type = "1";
+        String type = "3";
         String reason = "测试充值测试";
         String rechargekey = RechargeMakerDao.getInstance().getrechargekey(gamename, gameid, pf);
         String sign = MD5Util.getMD5String(account + serverId +orderId + money + gold + time + rechargekey);
         String rechargeurl = "http://interface.lhfs.xhhd6.com/interface/recharge_"+pf+"?pf=" + pf + "&username=" + account + "&serverId=" + serverId + "&orderId=" + orderId + "&money=" + money + "&gold=" + gold + "&type=" + type + "&reason=" + reason + "&sign=" + sign + "&time=" + time + "&roleId=" + roleid;
-        return rechargeurl;
+        String rechargetesturl = "http://interface.test.xhhd6.com/interface/recharge_"+pf+"?pf=" + pf + "&username=" + account + "&serverId=" + serverId + "&orderId=" + orderId + "&money=" + money + "&gold=" + gold + "&type=" + type + "&reason=" + reason + "&sign=" + sign + "&time=" + time + "&roleId=" + roleid;
+        String url=rechargeurl;
+        if(test.equals("test")){
+            url=rechargetesturl;
+        }
+        return url;
     }
 
 
 
     public String getRoleId(Map<String, String> params) {
+        String test = params.get("test").equals("test")?"test":"formal";
         String urlstring = "http://interface.lhfs.xhhd6.com/interface/userquery_common?pf=" + params.get("agent") + "&account=" + params.get("username") + "&serverId=" + params.get("serverid");
-        String res = UserDao.getInstance().getRoleId(urlstring);
+        String urlstringtest = "http://interface.test.xhhd6.com/interface/userquery_common?pf=" + params.get("agent") + "&account=" + params.get("username") + "&serverId=" + params.get("serverid");
+        String url=urlstring;
+        if(test.equals("test")){
+            url=urlstringtest;
+        }
+        String res = UserDao.getInstance().getRoleId(url);
         String option = "";
         if (res != null) {
             JSONObject jsonObject = JSONObject.parseObject(res);
@@ -72,7 +90,7 @@ public class lhfs_49you implements ReflectionService {
         } else {
             option = "<option value=\"111111\">无此账号</option>";
         }
-        String[] resArray = {urlstring, option};
+        String[] resArray = {url, option};
         String resjson = JSON.toJSONString(resArray);
         return resjson;
     }
