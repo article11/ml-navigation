@@ -29,6 +29,7 @@ public class RechargeMakerServlet extends BaseServlet {
         String username = request.getParameter("username");
         String serverid = request.getParameter("serverid");
         String roleid = request.getParameter("roleid");
+        String test = request.getParameter("test");
         Map<String, String> params = new HashMap<String, String>();
         params.put(CommonConst.gameid, gameid);
         params.put(CommonConst.gamename, gamename);
@@ -36,6 +37,7 @@ public class RechargeMakerServlet extends BaseServlet {
         params.put(CommonConst.username, username);
         params.put(CommonConst.serverid, serverid);
         params.put(CommonConst.roleid, roleid);
+        params.put("test", test);
 //        String rechargeUrl = RechargeMakerService.getInstance().getRechargeUrl(params);
 
         String rechargeUrl = null;
