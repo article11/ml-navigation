@@ -1,6 +1,7 @@
 package com.moloong.web.service.platform.impl;
 
 import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONObject;
 import com.moloong.web.bean.Platform;
 import com.moloong.web.common.config.CommonConst;
 import com.moloong.web.common.util.MD5Util;
@@ -8,6 +9,7 @@ import com.moloong.web.common.util.Until;
 import com.moloong.web.dao.LoginmakerDao;
 import com.moloong.web.dao.PlatformDao;
 import com.moloong.web.dao.RechargeMakerDao;
+import com.moloong.web.dao.UserDao;
 import com.moloong.web.service.platform.ReflectionService;
 
 import java.util.Map;
@@ -50,14 +52,15 @@ public class lhfs_37 implements ReflectionService {
         String server_id = params.get(CommonConst.serverid);
         String time = String.valueOf(System.currentTimeMillis() / 1000);
         String order_id = time + "_" + Until.getRoundNum(9);
+        String role_id = params.get(CommonConst.roleid);
         String money = "1";
         String coin = "100";
-        String type = "0";
+        String type = "3";
         String rechargekey = RechargeMakerDao.getInstance().getrechargekey(gamename, gameid, agent);
         String sign = MD5Util.getMD5String(order_id + user_name + server_id + coin + money + time + rechargekey);
 //        String rechargeurl = "http://s"+server_id+".37wannjws.17wan7.com/interface/recharge_" + agent + "?agent=" + agent + "&user_name=" + user_name + "&server_id=" + server_id + "&order_id=" + order_id + "&money=" + money + "&coin=" + coin + "&type=" + type +  "&sign=" + sign + "&time=" + time + "&order_id=" + order_id;
-        String rechargeurl = "http://interface.lhfs.xhhd6.com/interface/recharge_" + agent + "?agent=" + agent + "&user_name=" + user_name + "&server_id=" + server_id + "&order_id=" + order_id + "&money=" + money + "&coin=" + coin + "&type=" + type +  "&sign=" + sign + "&time=" + time + "&order_id=" + order_id;
-        String rechargetesturl = "http://interface.test.xhhd6.com/interface/recharge_" + agent + "?agent=" + agent + "&user_name=" + user_name + "&server_id=" + server_id + "&order_id=" + order_id + "&money=" + money + "&coin=" + coin + "&type=" + type +  "&sign=" + sign + "&time=" + time + "&order_id=" + order_id;
+        String rechargeurl = "http://interface.lhfs.xhhd6.com/interface/recharge_" + agent + "?agent=" + agent + "&user_name=" + user_name + "&server_id=" + server_id + "&role_id=" + role_id + "&money=" + money + "&coin=" + coin + "&type=" + type +  "&sign=" + sign + "&time=" + time + "&order_id=" + order_id;
+        String rechargetesturl = "http://interface.test.xhhd6.com/interface/recharge_" + agent + "?agent=" + agent + "&user_name=" + user_name + "&server_id=" + server_id + "&role_id=" + role_id + "&money=" + money + "&coin=" + coin + "&type=" + type +  "&sign=" + sign + "&time=" + time + "&order_id=" + order_id;
         String url=rechargeurl;
         if(test.equals("test")){
             url=rechargetesturl;
@@ -83,13 +86,29 @@ public class lhfs_37 implements ReflectionService {
             e.printStackTrace();
         }
         String sign = MD5Util.getMD5String(server_id + user_name + time + platFormDao.getPlatformLoginKey()).toLowerCase();
-        String urlstring = "http://interface.lhfs.xhhd6.com/interface/userquery_common?agent=" + agent + "&user_name=" + user_name + "&server_id=" + server_id+ "&sign=" + sign+ "&time=" + time;
-        String urlstringtest = "http://interface.test.xhhd6.com/interface/userquery_common?agent=" + agent + "&user_name=" + user_name + "&server_id=" + server_id+ "&sign=" + sign+ "&time=" + time;
+        String urlstring = "http://interface.lhfs.xhhd6.com/interface/userquery_37?agent=" + agent + "&user_name=" + user_name + "&server_id=" + server_id+ "&sign=" + sign+ "&time=" + time;
+        String urlstringtest = "http://interface.test.xhhd6.com/interface/userquery_37?agent=" + agent + "&user_name=" + user_name + "&server_id=" + server_id+ "&sign=" + sign+ "&time=" + time;
         String url=urlstring;
         if(test.equals("test")){
             url=urlstringtest;
         }
+        String res = UserDao.getInstance().getRoleId(url);
         String option = "";
+        if (res != null) {
+            JSONObject jsonObject = JSONObject.parseObject(res);
+            String code = jsonObject.getString("code");
+            if (code.equals("1")) {
+                String data = jsonObject.getString("data");
+                JSONObject rolejson = JSONObject.parseObject(data);
+                for (int i = 0; i < rolejson.size(); i++) {
+                    option += "<option value=\"" + rolejson.getJSONObject(String.valueOf(i)).getString("roleid") + "\">" + rolejson.getJSONObject(String.valueOf(i)).getString("rolename") + "</option>";
+                }
+            } else {
+                option = "<option value=\"111111\">无此账号</option>";
+            }
+        } else {
+            option = "<option value=\"111111\">无此账号</option>";
+        }
         String[] resArray={url,option};
         String resjson= JSON.toJSONString(resArray);
         return resjson;
