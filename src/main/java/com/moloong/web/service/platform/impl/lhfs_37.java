@@ -29,7 +29,8 @@ public class lhfs_37 implements ReflectionService {
         String agent = params.get(CommonConst.agent);
         String username = params.get(CommonConst.username);
         String serverid = params.get(CommonConst.serverid);
-        String time = String.valueOf(System.currentTimeMillis() / 1000);
+//        String time = String.valueOf(System.currentTimeMillis() / 1000);
+        String time = String.valueOf(System.currentTimeMillis());
         String loginkey = LoginmakerDao.getInstance().getLoginKey(gamename, gameid, agent);
         String sign = MD5Util.getMD5String(username + serverid + adult + pt_vip + time + loginkey).toLowerCase();
 //        String loginurl = "http://s"+serverid+".37wannjws.17wan7.com/interface/login_37wan?agent=" + agent + "&user_name=" + username + "&server_id=" + serverid + "&time=" + time + "&pt_vip=" + pt_vip + "&lingpai=" + lingpai + "&sign=" + sign + "&client=1&is_adult=" + adult;
@@ -53,7 +54,7 @@ public class lhfs_37 implements ReflectionService {
         String time = String.valueOf(System.currentTimeMillis() / 1000);
         String order_id = time + "_" + Until.getRoundNum(9);
         String role_id = params.get(CommonConst.roleid);
-        String money = "1";
+        String money = "1.00";
         String coin = "100";
         String type = "3";
         String rechargekey = RechargeMakerDao.getInstance().getrechargekey(gamename, gameid, agent);

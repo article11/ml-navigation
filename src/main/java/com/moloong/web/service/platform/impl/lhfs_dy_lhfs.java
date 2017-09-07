@@ -15,13 +15,13 @@ import java.util.Map;
 /**
  * Created by Administrator on 2016/11/23.
  */
-public class lhfs_49you implements ReflectionService {
+public class lhfs_dy_lhfs implements ReflectionService {
     @Override
     public String getLoginUrl(Map<String, String> params) {
         String test = params.get("test").equals("test")?"test":"formal";
         String gamename = params.get(CommonConst.gamename);
-//        String adult = "1";
-        String adult = "0";
+        String adult = "1";
+//        String adult = "0";
         String gameid = params.get(CommonConst.gameid);
         String agent = params.get(CommonConst.agent);
         String username = params.get(CommonConst.username);
@@ -30,10 +30,8 @@ public class lhfs_49you implements ReflectionService {
         String reload = "1";
         String loginkey = LoginmakerDao.getInstance().getLoginKey(gamename, gameid, agent);
         String sign = MD5Util.getMD5String(username + serverid + time + adult + loginkey);
-        String loginurl = "http://interface.lhfs.xhhd6.com/interface/login_49you?pf=" + agent + "&username=" + username + "&serverId=" + serverid + "&time=" + time + "&sign=" + sign + "&showlogin=0&adult=" + adult+"&channel_user_id="+username;;
-//        String loginurl = "http://101.37.23.196:8081/interface/login_49you?pf=" + agent + "&username=" + username + "&serverId=" + serverid + "&time=" + time + "&sign=" + sign + "&showlogin=0&adult=" + adult+"&channel_user_id="+username;
-
-        String logintesturl = "http://interface.test.xhhd6.com/interface/login_common?pf=" + agent + "&username=" + username + "&serverId=" + serverid + "&time=" + time + "&sign=" + sign + "&showlogin=0&adult=" + adult+"&reload="+reload+"&channel_user_id="+username;;
+        String loginurl = "http://interface.lhfs.xhhd6.com/interface/login_49you?pf=" + agent + "&username=" + username + "&serverId=" + serverid + "&time=" + time + "&sign=" + sign + "&showlogin=0&adult=" + adult+"&channel_user_id="+username;
+        String logintesturl = "http://interface.test.xhhd6.com/interface/login_common?pf=" + agent + "&username=" + username + "&serverId=" + serverid + "&time=" + time + "&sign=" + sign + "&showlogin=0&adult=" + adult+"&channel_user_id="+username;
         String url=loginurl;
         if(test.equals("test")){
             url=logintesturl;
@@ -52,12 +50,13 @@ public class lhfs_49you implements ReflectionService {
         String time = String.valueOf(System.currentTimeMillis());
         String roleid = params.get(CommonConst.roleid);
         String orderId = time + "_" + Until.getRoundNum(9);
-        String money = "100";
-        String gold = "100";
-//        String type = "2";
+        String money = "10000";
+        String gold = "10000";
+        String type = "2";
+//        String type = "3";
 //        String reason = "补单用户充值";
-        String type = "3";
-        String reason = "用户测试充值";
+//        String reason = "用户测试充值";
+        String reason = "用户充值错了角色";
         String rechargekey = RechargeMakerDao.getInstance().getrechargekey(gamename, gameid, pf);
         String sign = MD5Util.getMD5String(account + serverId +orderId + money + gold + time + rechargekey);
         String rechargeurl = "http://interface.lhfs.xhhd6.com/interface/recharge_49you?pf=" + pf + "&username=" + account + "&serverId=" + serverId + "&orderId=" + orderId + "&money=" + money + "&gold=" + gold + "&type=" + type + "&reason=" + reason + "&sign=" + sign + "&time=" + time + "&roleId=" + roleid;
@@ -72,7 +71,6 @@ public class lhfs_49you implements ReflectionService {
 
 
     public String getRoleId(Map<String, String> params) {
-        System.out.println("params: "+params.toString());
         String test = params.get("test").equals("test")?"test":"formal";
         String urlstring = "http://interface.lhfs.xhhd6.com/interface/userquery_common?pf=" + params.get("agent") + "&account=" + params.get("username") + "&serverId=" + params.get("serverid");
         String urlstringtest = "http://interface.test.xhhd6.com/interface/userquery_common?pf=" + params.get("agent") + "&account=" + params.get("username") + "&serverId=" + params.get("serverid");

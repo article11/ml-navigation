@@ -37,6 +37,11 @@
         <span>怒剑无双</span>
     </div>
 
+    <div id="24" class="gameico cssshadow2">
+        <img src="static/images/njws.png">
+        <span>热血封神</span>
+    </div>
+
 </div>
 
 </div>
@@ -75,6 +80,13 @@
             if( ids == "15"){
                 title="怒剑无双";
                 var gamename = "njws";
+//                backstage = '<li style="border:none"><a id="u4" href="http://qmrht.moloong.com/QMRBackend/login.jsp" target="_blank">秦美人国内</a></li>';
+//                backstage +='<li style="border:none"><a id="u4" href="http://211.237.12.103:8080/QMRBackend/login.jsp" target="_blank">秦美人韩国</a></li>';
+            }
+
+            if( ids == "24"){
+                title="热血封神";
+                var gamename = "rxfs";
 //                backstage = '<li style="border:none"><a id="u4" href="http://qmrht.moloong.com/QMRBackend/login.jsp" target="_blank">秦美人国内</a></li>';
 //                backstage +='<li style="border:none"><a id="u4" href="http://211.237.12.103:8080/QMRBackend/login.jsp" target="_blank">秦美人韩国</a></li>';
             }

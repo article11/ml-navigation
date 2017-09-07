@@ -1,9 +1,6 @@
 import com.alibaba.fastjson.JSON;
-import com.alibaba.fastjson.JSONArray;
 
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 /**
@@ -14,11 +11,12 @@ public class test {
 
     public static void main(String[] args) throws ClassNotFoundException {
 
-//        Map map2 = new HashMap();
+        Map map2 = new HashMap();
 //        String[] product_id = {"10000", "10001", "10002"};
-//        map2.put("product_id", product_id);
-//        String json2 = JSON.toJSONString(map2);
-//        System.out.println(json2);
+        String[] bundle_id = {"com.bleach.cjgame6","com.bleach.cjgame30","com.bleach.cjgame98","com.bleach.cjgame198","com.bleach.cjgame328","com.bleach.cjgame648","com.bleach.cjgameyueka","com.bleach.cjgameyongjiuka"};
+        map2.put("bundle_id", bundle_id);
+        String json2 = JSON.toJSONString(map2);
+        System.out.println(json2);
 //        JSONObject jsonObject = JSON.parseObject(json2);
 //        Set<String> productIdSet = new HashSet<String>();
 //        JSONArray jsonArray = jsonObject.getJSONArray("product_id");
@@ -31,13 +29,23 @@ public class test {
 //
 //        System.out.println(productIdSet.contains("101000"));
 
-
-        String[] client_id1 = {"284503496053-6gfr5dah29trfetl1l9aqfclgauimlko.apps.googleusercontent.com", "284503496053-npllpcknsme1dgrrrl0kuicsl7cd5c9u.apps.googleusercontent.com", "834588391899-plser8kvd5t8tlo7kstju0dultibui4i.apps.googleusercontent.com"};
-        Map map = new HashMap();
-        map.put("client_id", client_id1);
-        System.out.println("map: "+JSON.toJSONString(map));
-
-
+//
+//        String project_id = "20454";
+//        String authBase64 = "32165:fHC8fdeSc7sy05zI";
+//        String url = "https://api.xsolla.com/merchant/merchants/32165/token";
+//
+//
+//
+//
+//
+//
+//        Map map = new HashMap();
+//        map.put("project_id", project_id);
+//        map.put("authBase64", authBase64);
+//        map.put("url", url);
+//
+//
+//        System.out.println("map: "+ JSON.toJSONString(map));
 
 
 
@@ -49,13 +57,13 @@ public class test {
 
         // 转换方法2
 
-
-        List<String> list = new ArrayList<String>();
-        list.add("a");
-        list.add("b");
-        String listStr = JSON.toJSONString(list);
-        List<String> list1 = JSONArray.parseArray(listStr, String.class);
-        System.out.println("list1: "+list1);
+//
+//        List<String> list = new ArrayList<String>();
+//        list.add("a");
+//        list.add("b");
+//        String listStr = JSON.toJSONString(list);
+//        List<String> list1 = JSONArray.parseArray(listStr, String.class);
+//        System.out.println("list1: "+list1);
 
 
 

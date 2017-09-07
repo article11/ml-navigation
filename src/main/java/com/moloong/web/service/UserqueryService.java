@@ -42,7 +42,14 @@ public class UserqueryService {
 
 
     public String getRoleId(Map<String, String> params) throws Exception {
-        String className = "com.moloong.web.service.platform.impl." + params.get(CommonConst.gamename) + "_" + params.get(CommonConst.agent);
+        String agent="49you";
+        if("37".equals(params.get(CommonConst.agent))){
+            agent="37";
+        }
+
+
+//        String className = "com.moloong.web.service.platform.impl." + params.get(CommonConst.gamename) + "_" + params.get(CommonConst.agent);
+        String className = "com.moloong.web.service.platform.impl." + params.get(CommonConst.gamename) + "_" + agent;
         Class<?> clz = Class.forName(className);
         Object o = clz.newInstance();
         Method m = clz.getMethod("getRoleId", Map.class);

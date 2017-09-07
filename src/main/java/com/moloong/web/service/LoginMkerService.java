@@ -21,7 +21,16 @@ public class LoginMkerService {
 
 
     public String getLoginUrl(Map<String, String> params) throws Exception {
-        String className = "com.moloong.web.service.platform.impl." + params.get(CommonConst.gamename) + "_" + params.get(CommonConst.agent);
+        String agent=params.get(CommonConst.agent);
+//        if("lhfs".equals(params.get(CommonConst.gamename))){
+             agent="49you";
+
+//        }
+        if("37".equals(params.get(CommonConst.agent))){
+              agent="37";
+        }
+        String className = "com.moloong.web.service.platform.impl." + params.get(CommonConst.gamename) + "_" + agent;
+//        String className = "com.moloong.web.service.platform.impl." + params.get(CommonConst.gamename) + "_" + params.get(CommonConst.agent);
         Class<?> clz = Class.forName(className);
         Object o = clz.newInstance();
         Method m = clz.getMethod("getLoginUrl", Map.class);

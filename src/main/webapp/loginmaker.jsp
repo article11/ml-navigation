@@ -48,7 +48,10 @@
             $.get(url, function (data) {
                 $("#loginurl").html(data);
                 $("#loginhref").attr("href", data);
-                var localurl = "http://127.0.0.1:8080/" + data.substring(data.indexOf("login_"));
+                var localurl = "http://127.0.0.1:8080/interface/" + data.substring(data.indexOf("login_"));
+                if("rxfs"==gamename){
+                    var localurl = "http://127.0.0.1:8080/interface-rxfs/rxfslogin" + data.substring(data.indexOf("/login"));
+                }
 //                var localurl = "http://127.0.0.1:8080/"+data.substring(data.indexOf("login_common"));
                 $("#localurl").html(localurl);
                 $("#localhref").attr("href", localurl);
@@ -66,8 +69,11 @@
             $.get(url, function (data) {
                 $("#loginurl").html(data);
                 $("#loginhref").attr("href", data);
-                var localurl = "http://127.0.0.1:8080/" + data.substring(data.indexOf("login_"));
+                var localurl = "http://127.0.0.1:8080/interface/" + data.substring(data.indexOf("login_"));
 //                var localurl = "http://127.0.0.1:8080/"+data.substring(data.indexOf("login_common"));
+                if("rxfs"==gamename){
+                    var localurl = "http://127.0.0.1:8080/interface-rxfs/rxfslogin" + data.substring(data.indexOf("/login"));
+                }
                 $("#localurl").html(localurl);
                 $("#localhref").attr("href", localurl);
             });

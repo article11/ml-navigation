@@ -48,6 +48,10 @@
                 $("#rechargurl").html(data);
                 $("#recharghref").attr("href",data);
                 var localurl = "http://127.0.0.1:8080/" + data.substring(data.indexOf("recharge_"));
+                if("rxfs"==gamename){
+                    var localurl = "http://127.0.0.1:8080/interface-rxfs/" + data.substring(data.indexOf("recharge"));
+                }
+
 //                var localurl = "http://127.0.0.1:8080/"+data.substring(data.indexOf("login_common"));
                 $("#localurl").html(localurl);
                 $("#localhref").attr("href", localurl);
@@ -66,6 +70,9 @@
                 $("#rechargurl").html(data);
                 $("#recharghref").attr("href",data);
                 var localurl = "http://127.0.0.1:8080/" + data.substring(data.indexOf("recharge_"));
+                if("rxfs"==gamename){
+                    var localurl = "http://127.0.0.1:8080/interface-rxfs/" + data.substring(data.indexOf("recharge"));
+                }
 //                var localurl = "http://127.0.0.1:8080/"+data.substring(data.indexOf("login_common"));
                 $("#localurl").html(localurl);
                 $("#localhref").attr("href", localurl);
