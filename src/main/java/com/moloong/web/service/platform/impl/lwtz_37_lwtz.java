@@ -17,7 +17,7 @@ import java.util.Map;
 /**
  * Created by Administrator on 2016/11/23.
  */
-public class lhfs_37 implements ReflectionService {
+public class lwtz_37_lwtz implements ReflectionService {
     @Override
     public String getLoginUrl(Map<String, String> params) {
         String test = params.get("test");
@@ -34,9 +34,9 @@ public class lhfs_37 implements ReflectionService {
         String loginkey = LoginmakerDao.getInstance().getLoginKey(gamename, gameid, agent);
         String sign = MD5Util.getMD5String(username + serverid + adult + pt_vip + time + loginkey).toLowerCase();
 //        String loginurl = "http://s"+serverid+".37wannjws.17wan7.com/interface/login_37wan?agent=" + agent + "&user_name=" + username + "&server_id=" + serverid + "&time=" + time + "&pt_vip=" + pt_vip + "&lingpai=" + lingpai + "&sign=" + sign + "&client=1&is_adult=" + adult;
-        String loginurl = "http://interface.lhfs.xhhd6.com/interface/login_"+agent+"?agent=" + agent + "&user_name=" + username + "&server_id=" + serverid + "&time=" + time + "&pt_vip=" + pt_vip + "&lingpai=" + lingpai + "&sign=" + sign + "&client=1&is_adult=" + adult;
-        String logintesturl = "http://interface.test.xhhd6.com/interface/login_"+agent+"?agent=" + agent + "&user_name=" + username + "&server_id=" + serverid + "&time=" + time + "&pt_vip=" + pt_vip + "&lingpai=" + lingpai + "&sign=" + sign + "&client=1&is_adult=" + adult;
-//        String logintesturl = "http://118.178.192.142:8082/interface/lwtz/lwtzlogin/login_37_test?agent=37_lwtz&user_name=" + username + "&server_id=" + serverid + "&time=" + time + "&pt_vip=" + pt_vip + "&lingpai=" + lingpai + "&sign=" + sign + "&client=1&is_adult=" + adult;
+        String loginurl = "http://interface.xhhd6.com/interface/lwtz/lwtzlogin/login_37?agent=" + agent + "&user_name=" + username + "&server_id=" + serverid + "&time=" + time + "&pt_vip=" + pt_vip + "&lingpai=" + lingpai + "&sign=" + sign + "&client=1&is_adult=" + adult;
+//        String logintesturl = "http://interface.test.xhhd6.com/interface/login_"+agent+"?agent=" + agent + "&user_name=" + username + "&server_id=" + serverid + "&time=" + time + "&pt_vip=" + pt_vip + "&lingpai=" + lingpai + "&sign=" + sign + "&client=1&is_adult=" + adult;
+        String logintesturl = "http://118.178.192.142:8082/interface/lwtz/lwtzlogin/login_37_test?agent=37_lwtz&user_name=" + username + "&server_id=" + serverid + "&time=" + time + "&pt_vip=" + pt_vip + "&lingpai=" + lingpai + "&sign=" + sign + "&client=1&is_adult=" + adult;
         String url=loginurl;
         if(test.equals("test")){
             url=logintesturl;
@@ -61,7 +61,7 @@ public class lhfs_37 implements ReflectionService {
         String rechargekey = RechargeMakerDao.getInstance().getrechargekey(gamename, gameid, agent);
         String sign = MD5Util.getMD5String(order_id + user_name + server_id + coin + money + time + rechargekey);
 //        String rechargeurl = "http://s"+server_id+".37wannjws.17wan7.com/interface/recharge_" + agent + "?agent=" + agent + "&user_name=" + user_name + "&server_id=" + server_id + "&order_id=" + order_id + "&money=" + money + "&coin=" + coin + "&type=" + type +  "&sign=" + sign + "&time=" + time + "&order_id=" + order_id;
-        String rechargeurl = "http://interface.lhfs.xhhd6.com/interface/recharge_" + agent + "?agent=" + agent + "&user_name=" + user_name + "&server_id=" + server_id + "&role_id=" + role_id + "&money=" + money + "&coin=" + coin + "&type=" + type +  "&sign=" + sign + "&time=" + time + "&order_id=" + order_id;
+        String rechargeurl = "http://interface.xhhd6.com/interface/lwtz/recharge_37?agent=" + agent + "&user_name=" + user_name + "&server_id=" + server_id + "&role_id=" + role_id + "&money=" + money + "&coin=" + coin + "&type=" + type +  "&sign=" + sign + "&time=" + time + "&order_id=" + order_id;
         String rechargetesturl = "http://interface.test.xhhd6.com/interface/recharge_" + agent + "?agent=" + agent + "&user_name=" + user_name + "&server_id=" + server_id + "&role_id=" + role_id + "&money=" + money + "&coin=" + coin + "&type=" + type +  "&sign=" + sign + "&time=" + time + "&order_id=" + order_id;
         String url=rechargeurl;
         if(test.equals("test")){
@@ -88,7 +88,7 @@ public class lhfs_37 implements ReflectionService {
             e.printStackTrace();
         }
         String sign = MD5Util.getMD5String(server_id + user_name + time + platFormDao.getPlatformLoginKey()).toLowerCase();
-        String urlstring = "http://interface.lhfs.xhhd6.com/interface/userquery_37?agent=" + agent + "&user_name=" + user_name + "&server_id=" + server_id+ "&sign=" + sign+ "&time=" + time;
+        String urlstring = "http://interface.xhhd6.com/interface/lwtz/userquery_37?agent=" + agent + "&user_name=" + user_name + "&server_id=" + server_id+ "&sign=" + sign+ "&time=" + time;
         String urlstringtest = "http://interface.test.xhhd6.com/interface/userquery_37?agent=" + agent + "&user_name=" + user_name + "&server_id=" + server_id+ "&sign=" + sign+ "&time=" + time;
         String url=urlstring;
         if(test.equals("test")){

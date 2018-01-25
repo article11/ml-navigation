@@ -9,14 +9,13 @@ import com.moloong.web.dao.LoginmakerDao;
 import com.moloong.web.dao.RechargeMakerDao;
 import com.moloong.web.dao.UserDao;
 import com.moloong.web.service.platform.ReflectionService;
-import com.moloong.web.service.platform.TestService;
 
 import java.util.Map;
 
 /**
  * Created by Administrator on 2016/11/23.
  */
-public class rxfs_49you implements TestService {
+public class lwtz_59wanyx_lwtz implements ReflectionService {
     @Override
     public String getLoginUrl(Map<String, String> params) {
         String test = params.get("test").equals("test")?"test":"formal";
@@ -31,11 +30,10 @@ public class rxfs_49you implements TestService {
         String reload = "1";
         String loginkey = LoginmakerDao.getInstance().getLoginKey(gamename, gameid, agent);
         String sign = MD5Util.getMD5String(username + serverid + time + adult + loginkey);
-//        String loginurl = "http://interface.lhfs.xhhd6.com/interface-rxfs/rxfslogin/login?pf=" + agent + "&username=" + username + "&serverId=" + serverid + "&time=" + time + "&sign=" + sign + "&showlogin=0&adult=" + adult+"&channel_user_id="+username;;
-        String loginurl = "http://interface.lhfs.xhhd6.com/interface-rxfs/rxfslogin/login?pf=" + agent + "&username=" + username + "&serverId=" + serverid + "&time=" + time + "&sign=" + sign + "&showlogin=0&adult=" + adult+"&channel_user_id="+username;;
+        String loginurl = "http://interface.xhhd6.com/interface/lwtz/lwtzlogin/login?pf=" + agent + "&username=" + username + "&serverId=" + serverid + "&time=" + time + "&sign=" + sign + "&showlogin=0&adult=" + adult+"&channel_user_id="+username;;
 //        String loginurl = "http://101.37.23.196:8081/interface/login_49you?pf=" + agent + "&username=" + username + "&serverId=" + serverid + "&time=" + time + "&sign=" + sign + "&showlogin=0&adult=" + adult+"&channel_user_id="+username;
 
-        String logintesturl = "http://interface.test.xhhd6.com/interface-rxfs/rxfslogin/login?pf=" + agent + "&username=" + username + "&serverId=" + serverid + "&time=" + time + "&sign=" + sign + "&showlogin=0&adult=" + adult+"&reload="+reload+"&channel_user_id="+username;;
+        String logintesturl = "http://interface.xhhd6.com/interface/lwtz/lwtzlogin/login?pf=" + agent + "&username=" + username + "&serverId=" + serverid + "&time=" + time + "&sign=" + sign + "&showlogin=0&adult=" + adult+"&reload="+reload+"&channel_user_id="+username;;
         String url=loginurl;
         if(test.equals("test")){
             url=logintesturl;
@@ -62,9 +60,8 @@ public class rxfs_49you implements TestService {
         String reason = "用户测试充值";
         String rechargekey = RechargeMakerDao.getInstance().getrechargekey(gamename, gameid, pf);
         String sign = MD5Util.getMD5String(account + serverId +orderId + money + gold + time + rechargekey);
-//        String rechargeurl = "http://interface.lhfs.xhhd6.com/interface-rxfs/recharge?pf=" + pf + "&username=" + account + "&serverId=" + serverId + "&orderId=" + orderId + "&money=" + money + "&gold=" + gold + "&type=" + type + "&reason=" + reason + "&sign=" + sign + "&time=" + time + "&roleId=" + roleid;
-        String rechargeurl = "http://interface.lhfs.xhhd6.com/interface-rxfs/recharge?pf=" + pf + "&username=" + account + "&serverId=" + serverId + "&orderId=" + orderId + "&money=" + money + "&gold=" + gold + "&type=" + type + "&reason=" + reason + "&sign=" + sign + "&time=" + time + "&roleId=" + roleid;
-        String rechargetesturl = "http://interface.test.xhhd6.com/interface-rxfs/recharge?pf=" + pf + "&username=" + account + "&serverId=" + serverId + "&orderId=" + orderId + "&money=" + money + "&gold=" + gold + "&type=" + type + "&reason=" + reason + "&sign=" + sign + "&time=" + time + "&roleId=" + roleid;
+        String rechargeurl = "http://interface.xhhd6.com/interface/lwtz/recharge?pf=" + pf + "&username=" + account + "&serverId=" + serverId + "&orderId=" + orderId + "&money=" + money + "&gold=" + gold + "&type=" + type + "&reason=" + reason + "&sign=" + sign + "&time=" + time + "&roleId=" + roleid;
+        String rechargetesturl = "http://interface.xhhd6.com/interface/lwtz/recharge?pf=" + pf + "&username=" + account + "&serverId=" + serverId + "&orderId=" + orderId + "&money=" + money + "&gold=" + gold + "&type=" + type + "&reason=" + reason + "&sign=" + sign + "&time=" + time + "&roleId=" + roleid;
         String url=rechargeurl;
         if(test.equals("test")){
             url=rechargetesturl;
@@ -77,15 +74,12 @@ public class rxfs_49you implements TestService {
     public String getRoleId(Map<String, String> params) {
         System.out.println("params: "+params.toString());
         String test = params.get("test").equals("test")?"test":"formal";
-//        String urlstring = "http://interface.lhfs.xhhd6.com/interface-rxfs/userquery_common?pf=" + params.get("agent") + "&account=" + params.get("username") + "&serverId=" + params.get("serverid");
-        String urlstring = "http://interface.lhfs.xhhd6.com/interface-rxfs/userquery_common?pf=" + params.get("agent") + "&account=" + params.get("username") + "&serverId=" + params.get("serverid");
-        String urlstringtest = "http://interface.test.xhhd6.com/interface-rxfs/userquery_common?pf=" + params.get("agent") + "&account=" + params.get("username") + "&serverId=" + params.get("serverid");
+        String urlstring = "http://interface.xhhd6.com/interface/lwtz/userquery_common?pf=" + params.get("agent") + "&account=" + params.get("username") + "&serverId=" + params.get("serverid");
+        String urlstringtest = "http://interface.xhhd6.com/interface/lwtz/userquery_common?pf=" + params.get("agent") + "&account=" + params.get("username") + "&serverId=" + params.get("serverid");
         String url=urlstring;
         if(test.equals("test")){
             url=urlstringtest;
         }
-
-        System.out.println("urlstring: "+urlstring);
         String res = UserDao.getInstance().getRoleId(url);
         String option = "";
         if (res != null) {
@@ -107,12 +101,7 @@ public class rxfs_49you implements TestService {
         String resjson = JSON.toJSONString(resArray);
         return resjson;
     }
-    public String test(Map<String, String> params)
-    {
 
-        return "xxx";
-
-    }
 
 
 }

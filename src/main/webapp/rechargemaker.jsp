@@ -150,7 +150,7 @@
               value="<%=request.getParameter("username")!=null ?request.getParameter("username"):"test"%>"/>
     <br><br>
 
-    <% if(request.getParameter("gameid").equals("14")){ %>
+    <%--<% if(request.getParameter("gameid").equals("14")){ %>--%>
     <span style="color:red;">请选择角色</span>
     <select name="roleid" id="roleid" >
         <option value="111111" selected="selected">请检查角色</option>
@@ -158,7 +158,7 @@
     <button type="button" class="btn btn-primary" onclick="getroleid();">检查角色</button>
     <button type="button" class="btn btn-primary" onclick="getroleidtest();">测试服检查角色</button>
     <br><br>
-    <%}%>
+    <%--<%}%>--%>
     <%--<input type="submit" value="生成" class="btn btn-primary" />--%>
     <button type="button" class="btn btn-primary" onclick="getrechargeurl(),getroleid();">生成</button>
     <button type="button" class="btn btn-primary" onclick="getrechargeurltest(),getroleidtest();">测试服生成</button>

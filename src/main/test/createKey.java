@@ -9,6 +9,10 @@ public class createKey {
 
 
 
+//        System.out.println(System.getProperty("user.dir") );
+        System.out.println (createKey.class.getResource ("").getFile ());
+        System.out.println (createKey.class.getClass().getResource("/").getPath() );
+
 
     }
 

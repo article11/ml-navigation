@@ -27,6 +27,13 @@ public class RechargeMakerService {
         if("37".equals(params.get(CommonConst.agent))){
             agent="37";
         }
+        if("37_lwtz".equals(params.get(CommonConst.agent))){
+            agent="37_lwtz";
+        }
+        if("59wanyx_lwtz".equals(params.get(CommonConst.agent))){
+            agent="59wanyx_lwtz";
+        }
+
 
 //        String className = "com.moloong.web.service.platform.impl." + params.get(CommonConst.gamename) + "_" + params.get(CommonConst.agent);
         String className = "com.moloong.web.service.platform.impl." + params.get(CommonConst.gamename) + "_" + agent;
